@@ -16,20 +16,42 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
     var session : MCSession!
     var peerID: MCPeerID!
     let serviceType = "SCOUTING-APP"
+    var completeDataString = NSMutableString()
+    var controller = UIDocumentInteractionController()
 
     @IBOutlet weak var textView: UITextView!
-    
-    func updateTextView(text: String) {
-        textView.text = textView.text + text + "\n"
+    @IBAction func browse(_ sender: Any) {
+        // Show the browser view controller
+        self.present(self.browser, animated: true, completion: nil)
+    }
+    @IBAction func openIn(_ sender: Any) {
+        updateTextView()
     }
     
+    func updateTextView() {
+        let file = "File.csv"
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            
+            let path = dir.appendingPathComponent(file)
+            
+            //writing
+            do {
+                try completeDataString.write(to: path, atomically: false, encoding: String.Encoding.utf8.rawValue)
+            }
+            catch {/* error handling here */}
+            controller = UIDocumentInteractionController(url: path)
+            controller.presentOpenInMenu(from: CGRect(x:0,y:0,width:200,height:200), in: self.view!, animated: true)
+        }
+
+    }
+
     @IBAction func browseButton(_ sender: Any) {
         // Show the browser view controller
         self.present(self.browser, animated: true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        completeDataString.append("Alliance Color, Robot #, Scout Name, Able to Move (Auto), Crossed Base Line (Auto), Attempted Gear (Auto), Made Gear (Auto), Attempted Shot (Auto), Zone 1, Zone 2, Zone 3, Estimated High Goal (Auto), Made Hopper (Auto), Estimated Low Goal (Auto), Zone 1 Amount (Teleop), Zone 2 Amount (Teleop), Zone 3 Amount (Teleop), Made Gears, Dropped Gears, Shot Speed (1-5), Attempted Hang, Made Hang, Robot Speed, Comments\n")
         self.peerID = MCPeerID(displayName: UIDevice.current.name)
         self.session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.none)
         self.session.delegate = self
@@ -70,9 +92,8 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         // Called when a peer sends an NSData to us
         
         DispatchQueue.main.async {
-            
-            let recievedString = NSString(data: data as Data, encoding: String.Encoding.utf8.rawValue)
-            self.updateTextView(text: recievedString as! String)
+            let recievedString = NSMutableString(data: data as Data, encoding: String.Encoding.utf8.rawValue)
+            self.completeDataString.append(String(describing: recievedString))
         }
     }
     

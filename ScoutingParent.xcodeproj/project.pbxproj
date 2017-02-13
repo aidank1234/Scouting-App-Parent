@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		5F0A62C41E33DE9100F183E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A62C31E33DE9100F183E3 /* AppDelegate.swift */; };
 		5F0A62C61E33DE9100F183E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A62C51E33DE9100F183E3 /* ViewController.swift */; };
-		5F0A62C91E33DE9100F183E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F0A62C71E33DE9100F183E3 /* Main.storyboard */; };
 		5F0A62CB1E33DE9200F183E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F0A62CA1E33DE9200F183E3 /* Assets.xcassets */; };
 		5F0A62CE1E33DE9200F183E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F0A62CC1E33DE9200F183E3 /* LaunchScreen.storyboard */; };
 		5F0A62D91E33DE9200F183E3 /* ScoutingParentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A62D81E33DE9200F183E3 /* ScoutingParentTests.swift */; };
 		5F0A62E41E33DE9200F183E3 /* ScoutingParentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0A62E31E33DE9200F183E3 /* ScoutingParentUITests.swift */; };
+		5F8B4E861E3AA87900654BCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F8B4E851E3AA87900654BCE /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,6 @@
 		5F0A62C01E33DE9100F183E3 /* ScoutingParent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScoutingParent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F0A62C31E33DE9100F183E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F0A62C51E33DE9100F183E3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5F0A62C81E33DE9100F183E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5F0A62CA1E33DE9200F183E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F0A62CD1E33DE9200F183E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5F0A62CF1E33DE9200F183E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		5F0A62DF1E33DE9200F183E3 /* ScoutingParentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScoutingParentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F0A62E31E33DE9200F183E3 /* ScoutingParentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoutingParentUITests.swift; sourceTree = "<group>"; };
 		5F0A62E51E33DE9200F183E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5F8B4E851E3AA87900654BCE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				5F0A62C31E33DE9100F183E3 /* AppDelegate.swift */,
+				5F8B4E851E3AA87900654BCE /* Main.storyboard */,
 				5F0A62C51E33DE9100F183E3 /* ViewController.swift */,
-				5F0A62C71E33DE9100F183E3 /* Main.storyboard */,
 				5F0A62CA1E33DE9200F183E3 /* Assets.xcassets */,
 				5F0A62CC1E33DE9200F183E3 /* LaunchScreen.storyboard */,
 				5F0A62CF1E33DE9200F183E3 /* Info.plist */,
@@ -235,9 +235,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F8B4E861E3AA87900654BCE /* Main.storyboard in Resources */,
 				5F0A62CE1E33DE9200F183E3 /* LaunchScreen.storyboard in Resources */,
 				5F0A62CB1E33DE9200F183E3 /* Assets.xcassets in Resources */,
-				5F0A62C91E33DE9100F183E3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,14 +299,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5F0A62C71E33DE9100F183E3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5F0A62C81E33DE9100F183E3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5F0A62CC1E33DE9200F183E3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -514,6 +506,7 @@
 				5F0A62EA1E33DE9200F183E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5F0A62EB1E33DE9200F183E3 /* Build configuration list for PBXNativeTarget "ScoutingParentTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +515,7 @@
 				5F0A62ED1E33DE9200F183E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5F0A62EE1E33DE9200F183E3 /* Build configuration list for PBXNativeTarget "ScoutingParentUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +524,7 @@
 				5F0A62F01E33DE9200F183E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
