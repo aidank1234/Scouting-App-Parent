@@ -18,6 +18,7 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
     let serviceType = "SCOUTING-APP"
     var completeDataString = NSMutableString()
     var controller = UIDocumentInteractionController()
+    var displayIDCheck = 1
 
     @IBOutlet weak var textView: UITextView!
     @IBAction func browse(_ sender: Any) {
@@ -29,7 +30,7 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
     }
     
     func updateTextView() {
-        let file = "File.csv"
+        let file = "Master.csv"
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             
             let path = dir.appendingPathComponent(file)
@@ -51,7 +52,9 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        completeDataString.append("Alliance Color, Robot #, Scout Name, Able to Move (Auto), Crossed Base Line (Auto), Attempted Gear (Auto), Made Gear (Auto), Attempted Shot (Auto), Zone 1, Zone 2, Zone 3, Estimated High Goal (Auto), Made Hopper (Auto), Estimated Low Goal (Auto), Zone 1 Amount (Teleop), Zone 2 Amount (Teleop), Zone 3 Amount (Teleop), Made Gears, Dropped Gears, Shot Speed (1-5), Attempted Hang, Made Hang, Robot Speed, Comments\n")
+        completeDataString.append("Alliance Color, Robot #, Scout Name, Able to Move (Auto), Crossed Base Line (Auto), Attempted Gear (Auto), Made Gear (Auto), Attempted Shot (Auto), Zone 1, Zone 2, Zone 3, Estimated High Goal (Auto), Fuel From Hopper (Auto), Estimated Low Goal (Auto), Zone 1 Amount (Teleop), Zone 2 Amount (Teleop), Zone 3 Amount (Teleop), Made Gears, Dropped Gears, Time to Drop Gear (1-5), Shot Speed (1-5), Gears from Floor, Fuel from Floor, Attempted Climb, Able to Climb, Fuel From Hopper (Teleop), Robot Speed (1-5), Shot Accuracy (1-5), Human Player Skill (1-5), Comments\n")
+        
+        if displayIDCheck == 1 {
         self.peerID = MCPeerID(displayName: UIDevice.current.name)
         self.session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.none)
         self.session.delegate = self
@@ -64,6 +67,8 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         self.assistant = MCAdvertiserAssistant(serviceType:serviceType,
                                                discoveryInfo:nil, session:self.session)
         self.assistant.start()
+        displayIDCheck = 0
+        }
     }
 
     override func didReceiveMemoryWarning() {
