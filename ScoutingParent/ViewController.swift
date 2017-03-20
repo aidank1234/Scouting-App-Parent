@@ -19,6 +19,7 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
     var completeDataString = NSMutableString()
     var controller = UIDocumentInteractionController()
     var displayIDCheck = 1
+    let defaults = UserDefaults.standard
 
     @IBOutlet weak var textView: UITextView!
     @IBAction func browse(_ sender: Any) {
@@ -52,7 +53,17 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        completeDataString.append("Alliance Color, Robot #, Scout Name, Able to Move (Auto), Crossed Base Line (Auto), Attempted Gear (Auto), Made Gear (Auto), Attempted Shot (Auto), Zone 1, Zone 2, Zone 3, Estimated High Goal (Auto), Fuel From Hopper (Auto), Estimated Low Goal (Auto), Zone 1 Amount (Teleop), Zone 2 Amount (Teleop), Zone 3 Amount (Teleop), Made Gears, Dropped Gears, Time to Drop Gear (1-5), Shot Speed (1-5), Gears from Floor, Fuel from Floor, Attempted Climb, Able to Climb, Fuel From Hopper (Teleop), Robot Speed (1-5), Shot Accuracy (1-5), Human Player Skill (1-5), Comments\n")
+        if defaults.bool(forKey: "firstLaunch") == false
+        {
+        completeDataString.append("Alliance Color, Robot #, Scout Name, Able to Move (Auto), Crossed Base Line (Auto), Attempted Gear (Auto), Made Gear (Auto), Attempted Shot (Auto), Zone 1, Zone 2, Zone 3, Estimated High Goal (Auto), Fuel From Hopper (Auto), Estimated Low Goal (Auto), Zone 1 Amount (Teleop), Zone 2 Amount (Teleop), Zone 3 Amount (Teleop), Low Shots (Teleop), Made Gears, Dropped Gears, Time to Drop Gear (1-5), Shot Speed (1-5), Gears from Floor, Fuel from Floor, Attempted Climb, Able to Climb, Fuel From Hopper (Teleop), Robot Speed (1-5), Shot Accuracy (1-5), Human Player Skill (1-5), Comments\n")
+            defaults.set(true, forKey: "firstLaunch")
+            defaults.set(completeDataString, forKey: "completeData")
+            defaults.synchronize()
+        }
+            
+        else {
+            completeDataString.append(defaults.object(forKey: "completeData") as! String)
+        }
         
         if displayIDCheck == 1 {
         self.peerID = MCPeerID(displayName: UIDevice.current.name)
@@ -99,6 +110,8 @@ class ViewController: UIViewController, MCBrowserViewControllerDelegate, MCSessi
         DispatchQueue.main.async {
             let recievedString = NSMutableString(data: data as Data, encoding: String.Encoding.utf8.rawValue)
             self.completeDataString.append(String(describing: recievedString))
+            self.defaults.set(self.completeDataString, forKey: "completeData")
+            self.defaults.synchronize()
         }
     }
     
